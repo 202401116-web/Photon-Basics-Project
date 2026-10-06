@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     //this checks if the required no of players is met
     void CheckPlayers()
     {
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 2) //change player count depending on the required no of players
+        if (PhotonNetwork.CurrentRoom.PlayerCount >= 1) //change player count depending on the required no of players
         {
             allowMovement = true;
             Debug.Log("Two players in room → Movement enabled!");

@@ -4,6 +4,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,7 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
     public Transform interactPoint; //this is referenced to an empty child in front of the player
     public float interactRange = 1f;
     private InteractableObject grabbedObject = null;
+    [SerializeField]private LayerMask interactLayer;
 
     [Header("Network sync variables")]
     private Vector3 networkPosition;
@@ -32,6 +34,7 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
         rb = GetComponent<Rigidbody2D>();
         networkPosition = transform.position;
         networkRotation = transform.rotation;
+        interactLayer = 1 << LayerMask.NameToLayer("Interactables");
     }
 
     // Update is called once per frame
@@ -82,20 +85,24 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
     {
         if (Input.GetKeyDown(KeyCode.E)) //this is the key for grab or release
         {
-            if (grabbedObject == null)
-            {
-                Collider2D hit = Physics2D.OverlapCircle(interactPoint.position, interactRange);
-                if (hit != null && hit.GetComponent<InteractableObject>())
+            //Collider2D hit = Physics2D.OverlapCircle(interactPoint.position, interactRange);
+            //if (hit.TryGetComponent<InteractableObject>(out var interacterable))
+            //{
+                if (grabbedObject == null)
                 {
-                    grabbedObject = hit.GetComponent<InteractableObject>();
-                    grabbedObject.photonView.RPC("RPC_SetGrabbed", RpcTarget.AllBuffered, photonView.ViewID);
+                    Collider2D hit = Physics2D.OverlapCircle(interactPoint.position, interactRange, interactLayer);
+                    if (hit != null && hit.GetComponent<InteractableObject>())
+                    {
+                        grabbedObject = hit.GetComponent<InteractableObject>();
+                        grabbedObject.photonView.RPC("RPC_SetGrabbed", RpcTarget.AllBuffered, photonView.ViewID);
+                    }
                 }
-            }
-            else
-            {
-                grabbedObject.photonView.RPC("RPC_Release", RpcTarget.AllBuffered);
-                grabbedObject = null;
-            }
+                else
+                {
+                    grabbedObject.photonView.RPC("RPC_Release", RpcTarget.AllBuffered);
+                    grabbedObject = null;
+                }
+            //}
         }
 
         if (grabbedObject != null)
@@ -114,6 +121,13 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
         {
             isGrounded = true;
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(interactPoint.position, interactRange);
     }
 
     // 🔹 Photon built-in sync method
