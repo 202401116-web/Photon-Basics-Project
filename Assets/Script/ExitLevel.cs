@@ -28,7 +28,7 @@ public class ExitLevel : MonoBehaviourPun
 
     private void CheckWinCondition()
     {
-        if (PhotonNetwork.IsMasterClient && playersInDoor >= 1)
+        if (PhotonNetwork.IsMasterClient && playersInDoor >= 2)
         {
             Debug.Log("Master Client is loading the next room...");
             PhotonNetwork.LoadLevel(sceneToLoad);
