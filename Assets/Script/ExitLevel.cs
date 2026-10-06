@@ -5,7 +5,7 @@ using UnityEngine;
 public class ExitLevel : MonoBehaviourPun
 {
     public string sceneToLoad;
-    private int playersInDoor = 0;
+    [SerializeField] private int playersInDoor = 0;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
