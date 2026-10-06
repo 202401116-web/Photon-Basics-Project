@@ -10,7 +10,7 @@ public class ExitLevel : MonoBehaviourPun
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PhotonView pv = collision.GetComponent<PhotonView>();
-        if (collision.gameObject.layer == LayerMask.NameToLayer("player") && pv != null && pv.IsMine)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("player") && pv != null)
         {
             playersInDoor++;
             CheckWinCondition();
@@ -20,7 +20,7 @@ public class ExitLevel : MonoBehaviourPun
     private void OnTriggerExit2D(Collider2D collision)
     {
         PhotonView pv = collision.GetComponent<PhotonView>();
-        if (collision.gameObject.layer == LayerMask.NameToLayer("player") && pv != null && pv.IsMine)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("player") && pv != null)
         {
             playersInDoor--;
         }
