@@ -16,6 +16,7 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
     public Transform[] spawnPoints;
 
     //this is for the owner of the server (player who created the game)
+
     public void Start()
     {
         if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
@@ -57,11 +58,11 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
         }
 
         // Prevent double-spawning if the player already exists
-        if (PhotonNetwork.LocalPlayer.TagObject != null)
-        {
-            Debug.Log("Player already spawned, skipping.");
-            return;
-        }
+        //if (PhotonNetwork.LocalPlayer.TagObject != null)
+        //{
+        //    Debug.Log("Player already spawned, skipping.");
+        //    return;
+        //}
 
         playerId = PhotonNetwork.LocalPlayer.ActorNumber;
         Debug.Log("playerID: " + playerId);

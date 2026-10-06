@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2083767117596402422}
   - component: {fileID: 6794296708898208000}
   - component: {fileID: 3201295276811497726}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,6 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player2DController
   moveSpeed: 5
   jumpForce: 7
+  sprite: {fileID: 0}
   isGrounded: 0
   interactPoint: {fileID: 44807446149395400}
   interactRange: 0.6

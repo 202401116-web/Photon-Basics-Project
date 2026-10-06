@@ -99,7 +99,6 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
             IsOpen = true,
             MaxPlayers = 2
         };
-
         PhotonNetwork.CreateRoom(roomName, roomOps);
         Debug.Log($"Trying to create room: {roomName}");
     }
@@ -131,7 +130,4 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         Debug.Log("Tried to create a new room but failed, there must be a room with the same name");
         CreateRoom();
     }
-
-
-
 }

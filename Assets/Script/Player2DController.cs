@@ -14,6 +14,7 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
+    public SpriteRenderer sprite;
 
     private Rigidbody2D rb;
     public bool isGrounded = false;
@@ -104,7 +105,7 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
                 if (hit.TryGetComponent<Lever>(out var lever))
                 {
                     Debug.Log("Switcheroo");
-                    lever.photonView.RPC("Switched", RpcTarget.All, false);
+                    lever.photonView.RPC("Switched", RpcTarget.AllBuffered, false);
                 }
             }
         }
