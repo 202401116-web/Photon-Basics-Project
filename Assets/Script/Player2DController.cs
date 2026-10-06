@@ -83,17 +83,16 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
 
     void HandleInteraction()
     {
-        if (Input.GetKeyDown(KeyCode.E)) //this is the key for grab or release
+        Collider2D hit = Physics2D.OverlapCircle(interactPoint.position, interactRange, interactLayer);
+        if (hit != null)
         {
-            //Collider2D hit = Physics2D.OverlapCircle(interactPoint.position, interactRange);
-            //if (hit.TryGetComponent<InteractableObject>(out var interacterable))
-            //{
+            if (Input.GetKeyDown(KeyCode.E)) //this is the key for grab or release
+            {
                 if (grabbedObject == null)
                 {
-                    Collider2D hit = Physics2D.OverlapCircle(interactPoint.position, interactRange, interactLayer);
-                    if (hit != null && hit.GetComponent<InteractableObject>())
+                    if (hit != null && hit.TryGetComponent<InteractableObject>(out var interacterer))
                     {
-                        grabbedObject = hit.GetComponent<InteractableObject>();
+                        grabbedObject = interacterer;
                         grabbedObject.photonView.RPC("RPC_SetGrabbed", RpcTarget.AllBuffered, photonView.ViewID);
                     }
                 }
@@ -102,7 +101,12 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
                     grabbedObject.photonView.RPC("RPC_Release", RpcTarget.AllBuffered);
                     grabbedObject = null;
                 }
-            //}
+                if (hit.TryGetComponent<Lever>(out var lever))
+                {
+                    Debug.Log("Switcheroo");
+                    lever.Switched(false);
+                }
+            }
         }
 
         if (grabbedObject != null)

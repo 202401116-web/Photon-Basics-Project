@@ -8,7 +8,6 @@ public class InteractableObject : MonoBehaviourPun, IPunObservable
 {
     private Rigidbody2D rb;
     private PhotonView ownerView;
-    [SerializeField] public bool isLever;
     [SerializeField] public bool isObject;
     private BoxCollider2D collisioner;
 
@@ -23,11 +22,6 @@ public class InteractableObject : MonoBehaviourPun, IPunObservable
         collisioner = GetComponent<BoxCollider2D>();
         networkPosition = transform.position;
         networkRotation = transform.rotation;
-
-        if(isLever)
-        {
-            collisioner.isTrigger = true;
-        }
     }
 
     [PunRPC]

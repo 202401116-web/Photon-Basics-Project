@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         CheckPlayers();
-        TryStartTimer();
+        //TryStartTimer();
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -78,22 +78,22 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    void TryStartTimer()
-    {
-        // Only master client decides when to start
-        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2 && !timerRunning)
-        {
-            photonView.RPC("RPC_StartTimer", RpcTarget.AllBuffered, PhotonNetwork.Time);
-        }
-    }
+    //void TryStartTimer()
+    //{
+    //    // Only master client decides when to start
+    //    if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2 && !timerRunning)
+    //    {
+    //        photonView.RPC("RPC_StartTimer", RpcTarget.AllBuffered, PhotonNetwork.Time);
+    //    }
+    //}
 
-    [PunRPC]
-    void RPC_StartTimer(double startTime)
-    {
-        currentTime = levelDuration;
-        timerRunning = true;
-        Debug.Log("Timer started!");
-    }
+    //[PunRPC]
+    //void RPC_StartTimer(double startTime)
+    //{
+    //    currentTime = levelDuration;
+    //    timerRunning = true;
+    //    Debug.Log("Timer started!");
+    //}
 
     //formats the timer display
     void UpdateTimerUI()
