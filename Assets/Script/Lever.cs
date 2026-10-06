@@ -33,4 +33,16 @@ public class Lever : MonoBehaviourPun
             Debug.LogWarning("PathBlocker is not assigned in NetworkSwitchTrigger!");
         }
     }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(gate);
+        }
+        else
+        {
+            gate = (GameObject)stream.ReceiveNext();
+        }
+    }
 }

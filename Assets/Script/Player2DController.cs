@@ -104,7 +104,7 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
                 if (hit.TryGetComponent<Lever>(out var lever))
                 {
                     Debug.Log("Switcheroo");
-                    lever.Switched(false);
+                    lever.photonView.RPC("Switched", RpcTarget.All, false);
                 }
             }
         }
