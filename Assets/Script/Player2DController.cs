@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
 
     private Rigidbody2D rb;
     public bool isGrounded = false;
+    [SerializeField] Animator animator;
 
     [Header("Interaction Settings")]
     public Transform interactPoint; //this is referenced to an empty child in front of the player
@@ -36,6 +38,17 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
         networkPosition = transform.position;
         networkRotation = transform.rotation;
         interactLayer = 1 << LayerMask.NameToLayer("Interactables");
+        animator = GetComponent<Animator>();
+
+        if(PhotonNetwork.LocalPlayer.ActorNumber == 1)
+        {
+            RuntimeAnimatorController controller = Resources.Load<RuntimeAnimatorController>("Animations/Etsy_Anim");
+            if (controller != null)
+            {
+                Debug.Log("Got Animations!");
+                animator.runtimeAnimatorController = controller;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -79,6 +92,15 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isGrounded = false;
+        }
+
+        if(move != 0)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
         }
     }
 

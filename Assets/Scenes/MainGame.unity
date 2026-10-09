@@ -1621,7 +1621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitLevel
   sceneToLoad: Level2
-  playerInDoor: 0
+  playersInDoor: 0
 --- !u!114 &1399575715
 MonoBehaviour:
   m_ObjectHideFlags: 0
