@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 3201295276811497726}
   - component: {fileID: -3688602915998453140}
   - component: {fileID: 2866700716649589461}
+  - component: {fileID: -3820314084903132532}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -150,6 +151,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 2083767117596402422}
   - {fileID: 6794296708898208000}
+  - {fileID: -3820314084903132532}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -286,3 +288,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.9, y: 1.45}
   m_EdgeRadius: 0
+--- !u!114 &-3820314084903132532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7715689351089928934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonAnimatorView
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: isRunning
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0

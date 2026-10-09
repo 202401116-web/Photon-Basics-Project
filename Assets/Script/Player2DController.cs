@@ -164,7 +164,6 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
         {
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
-            stream.SendNext(animator);
         }
         else // Remote player → receive data
         {
