@@ -72,10 +72,12 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
         if (playerId == 1)
         {
             spawnLocation = spawnPoints[0];
+            playerPrefab = Resources.Load<GameObject>("Etsy");
         }
         else if (playerId == 2 && spawnPoints.Length > 1)
         {
             spawnLocation = spawnPoints[1];
+            playerPrefab = Resources.Load<GameObject>("GiGi");
         }
         else
         {

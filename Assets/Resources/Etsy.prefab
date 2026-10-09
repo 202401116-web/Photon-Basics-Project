@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 2866700716649589461}
   - component: {fileID: -3820314084903132532}
   m_Layer: 3
-  m_Name: Player
+  m_Name: Etsy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

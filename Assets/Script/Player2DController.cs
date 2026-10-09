@@ -40,15 +40,15 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
         interactLayer = 1 << LayerMask.NameToLayer("Interactables");
         animator = GetComponent<Animator>();
 
-        if(PhotonNetwork.LocalPlayer.ActorNumber == 1 && photonView.IsMine)
-        {
-            RuntimeAnimatorController controller = Resources.Load<RuntimeAnimatorController>("Animations/Etsy_Anim");
-            if (controller != null)
-            {
-                Debug.Log("Got Animations!");
-                animator.runtimeAnimatorController = controller;
-            }
-        }
+        //if(PhotonNetwork.LocalPlayer.ActorNumber == 1 && photonView.IsMine)
+        //{
+        //    RuntimeAnimatorController controller = Resources.Load<RuntimeAnimatorController>("Animations/Etsy_Anim");
+        //    if (controller != null)
+        //    {
+        //        Debug.Log("Got Animations!");
+        //        animator.runtimeAnimatorController = controller;
+        //    }
+        //}
     }
 
     // Update is called once per frame
