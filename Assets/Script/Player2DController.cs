@@ -40,7 +40,7 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
         interactLayer = 1 << LayerMask.NameToLayer("Interactables");
         animator = GetComponent<Animator>();
 
-        if(PhotonNetwork.LocalPlayer.ActorNumber == 1)
+        if(PhotonNetwork.LocalPlayer.ActorNumber == 1 && photonView.IsMine)
         {
             RuntimeAnimatorController controller = Resources.Load<RuntimeAnimatorController>("Animations/Etsy_Anim");
             if (controller != null)
@@ -164,6 +164,7 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
         {
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
+            stream.SendNext(animator);
         }
         else // Remote player → receive data
         {
