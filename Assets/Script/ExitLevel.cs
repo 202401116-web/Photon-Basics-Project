@@ -6,7 +6,12 @@ public class ExitLevel : MonoBehaviourPun
 {
     public string sceneToLoad;
     [SerializeField] private int playersInDoor = 0;
-    private PhotonLobby lobby;
+    private GameManager lobby;
+
+    private void Start()
+    {
+        lobby = GameObject.Find("GameManger").GetComponent<GameManager>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

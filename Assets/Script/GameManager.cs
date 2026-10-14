@@ -78,24 +78,37 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    //void TryStartTimer()
-    //{
-    //    // Only master client decides when to start
-    //    if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2 && !timerRunning)
-    //    {
-    //        photonView.RPC("RPC_StartTimer", RpcTarget.AllBuffered, PhotonNetwork.Time);
-    //    }
-    //}
+    public void KickAllPlayers()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            Debug.LogWarning("Only the Master Client can kick players.");
+            return;
+        }
 
-    //[PunRPC]
-    //void RPC_StartTimer(double startTime)
-    //{
-    //    currentTime = levelDuration;
-    //    timerRunning = true;
-    //    Debug.Log("Timer started!");
-    //}
+        if (PhotonNetwork.CurrentRoom != null)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+        }
 
-    //formats the timer display
+        Player[] otherPlayers = PhotonNetwork.PlayerListOthers;
+        for (int i = 0; i < otherPlayers.Length; i++)
+        {
+            PhotonNetwork.CloseConnection(otherPlayers[i]);
+        }
+
+        // Optional: Kick the host out as well
+        PhotonNetwork.LeaveRoom();
+    }
+
+    // This callback triggers automatically on any client after Photon successfully removes them
+    public override void OnLeftRoom()
+    {
+        Debug.Log("Disconnected from Photon room. Quitting application...");
+        Application.Quit();
+    }
+
     void UpdateTimerUI()
     {
         if (timerText != null)
