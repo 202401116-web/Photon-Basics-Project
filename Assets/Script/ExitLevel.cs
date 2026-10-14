@@ -6,17 +6,11 @@ public class ExitLevel : MonoBehaviourPun
 {
     public string sceneToLoad;
     [SerializeField] private int playersInDoor = 0;
-    public LayerMask playerLayers;
-
-    private void Start()
-    {
-        playerLayers = LayerMask.GetMask("player", "playerNonPush");
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PhotonView pv = collision.GetComponent<PhotonView>();
-        if (collision.gameObject.layer == playerLayers && pv != null)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("player") && pv != null || collision.gameObject.layer == LayerMask.NameToLayer("playerNonPush") && pv != null)
         {
             playersInDoor++;
             CheckWinCondition();
@@ -29,7 +23,7 @@ public class ExitLevel : MonoBehaviourPun
     private void OnTriggerExit2D(Collider2D collision)
     {
         PhotonView pv = collision.GetComponent<PhotonView>();
-        if (collision.gameObject.layer == playerLayers && pv != null)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("player") && pv != null || collision.gameObject.layer == LayerMask.NameToLayer("playerNonPush") && pv != null)
         {
             playersInDoor--;
         }
