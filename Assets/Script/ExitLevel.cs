@@ -36,7 +36,7 @@ public class ExitLevel : MonoBehaviourPun
             Debug.Log("Master Client is loading the next room...");
             PhotonNetwork.LoadLevel(sceneToLoad);
         }
-        else if(PhotonNetwork.IsMasterClient && playersInDoor >= 2 && sceneToLoad == "exitGame")
+        else if(playersInDoor >= 2 && sceneToLoad == "exitGame")
         {
             Application.Quit();
         }
