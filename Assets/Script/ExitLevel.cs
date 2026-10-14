@@ -6,6 +6,7 @@ public class ExitLevel : MonoBehaviourPun
 {
     public string sceneToLoad;
     [SerializeField] private int playersInDoor = 0;
+    private PhotonLobby lobby;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -36,10 +37,10 @@ public class ExitLevel : MonoBehaviourPun
             Debug.Log("Master Client is loading the next room...");
             PhotonNetwork.LoadLevel(sceneToLoad);
         }
-        else if(playersInDoor >= 2 && sceneToLoad == "exitGame")
+        else if(PhotonNetwork.IsMasterClient && playersInDoor >= 2 && sceneToLoad == "exitGame")
         {
             Debug.Log("YIPEE, WE escaped");
-            Application.Quit();
+            lobby.KickAllPlayers();
         }
     }
 }
