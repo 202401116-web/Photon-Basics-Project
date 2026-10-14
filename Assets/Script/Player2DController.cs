@@ -39,16 +39,6 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
         networkRotation = transform.rotation;
         interactLayer = 1 << LayerMask.NameToLayer("Interactables");
         animator = GetComponent<Animator>();
-
-        //if(PhotonNetwork.LocalPlayer.ActorNumber == 1 && photonView.IsMine)
-        //{
-        //    RuntimeAnimatorController controller = Resources.Load<RuntimeAnimatorController>("Animations/Etsy_Anim");
-        //    if (controller != null)
-        //    {
-        //        Debug.Log("Got Animations!");
-        //        animator.runtimeAnimatorController = controller;
-        //    }
-        //}
     }
 
     // Update is called once per frame
@@ -92,6 +82,7 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isGrounded = false;
+            animator.SetBool("Jumping", true);
         }
 
         if(move != 0)
@@ -147,6 +138,7 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
         if (collision.contacts[0].normal.y > 0.5f)
         {
             isGrounded = true;
+            animator.SetBool("Jumping", false);
         }
     }
 
