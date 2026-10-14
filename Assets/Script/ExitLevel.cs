@@ -6,11 +6,11 @@ public class ExitLevel : MonoBehaviourPun
 {
     public string sceneToLoad;
     [SerializeField] private int playersInDoor = 0;
-    LayerMask playerLayers;
+    public LayerMask playerLayers;
 
     private void Start()
     {
-        playerLayers = 1 << LayerMask.GetMask("player", "playerNonPush");
+        playerLayers = LayerMask.GetMask("player", "playerNonPush");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
