@@ -42,10 +42,5 @@ public class ExitLevel : MonoBehaviourPun
             Debug.Log("Master Client is loading the next room...");
             PhotonNetwork.LoadLevel(sceneToLoad);
         }
-        else if(PhotonNetwork.IsMasterClient && playersInDoor >= 2 && sceneToLoad == "exitGame")
-        {
-            Debug.Log("YIPEE, WE escaped");
-            lobby.KickAllPlayers();
-        }
     }
 }

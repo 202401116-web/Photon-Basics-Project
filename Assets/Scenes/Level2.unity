@@ -4972,7 +4972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992a69ed2ef4f1d4b86cdfe17899adbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitLevel
-  sceneToLoad: exitGame
+  sceneToLoad: ExitScene
   playersInDoor: 0
 --- !u!114 &1916542286
 MonoBehaviour:

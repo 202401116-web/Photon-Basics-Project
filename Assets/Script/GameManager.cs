@@ -77,38 +77,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             Debug.Log("Waiting for 2 players → Movement disabled.");
         }
     }
-
-    public void KickAllPlayers()
-    {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            Debug.LogWarning("Only the Master Client can kick players.");
-            return;
-        }
-
-        if (PhotonNetwork.CurrentRoom != null)
-        {
-            PhotonNetwork.CurrentRoom.IsOpen = false;
-            PhotonNetwork.CurrentRoom.IsVisible = false;
-        }
-
-        Player[] otherPlayers = PhotonNetwork.PlayerListOthers;
-        for (int i = 0; i < otherPlayers.Length; i++)
-        {
-            PhotonNetwork.CloseConnection(otherPlayers[i]);
-        }
-
-        // Optional: Kick the host out as well
-        PhotonNetwork.LeaveRoom();
-    }
-
-    // This callback triggers automatically on any client after Photon successfully removes them
-    public override void OnLeftRoom()
-    {
-        Debug.Log("Disconnected from Photon room. Quitting application...");
-        Application.Quit();
-    }
-
     void UpdateTimerUI()
     {
         if (timerText != null)
