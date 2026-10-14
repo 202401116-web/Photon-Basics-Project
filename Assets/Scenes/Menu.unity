@@ -1271,7 +1271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36917e9ba1fdc3947ba3631529b55837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhotonLoby
-  sceneToLoad: Level2
+  sceneToLoad: MainGame
   createButton: {fileID: 1794470051}
   joinButton: {fileID: 1012971661}
   cancelButton: {fileID: 1016899672}
