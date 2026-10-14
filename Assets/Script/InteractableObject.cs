@@ -60,6 +60,37 @@ public class InteractableObject : MonoBehaviourPun, IPunObservable
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // 1. Dynamic Actor Check (Safe replacement for your ActorNumber check)
+        if (PhotonNetwork.LocalPlayer.ActorNumber != 2) return;
+
+        Rigidbody2D targetRigidbody = collision.collider.attachedRigidbody;
+        PhotonView targetPhotonView = collision.collider.GetComponent<PhotonView>();
+
+        if (targetRigidbody == null || targetRigidbody.bodyType == RigidbodyType2D.Kinematic) return;
+
+        if (targetPhotonView != null)
+        {
+            // 2. If we don't own it yet, request ownership and EXIT early.
+            // Do NOT apply force this frame because our physics updates will be rejected by the network.
+            if (!targetPhotonView.IsMine)
+            {
+                targetPhotonView.RequestOwnership();
+                return;
+            }
+        }
+
+        // 3. If we safely reached this point, we are officially the owner on the network!
+        // Calculate the push direction using Vector2 for accurate 2D physics.
+        Vector2 pushDirection = (Vector2)collision.collider.transform.position - (Vector2)transform.position;
+        pushDirection.y = 0; // Keep the push strictly horizontal
+        pushDirection.Normalize();
+
+        // 4. Apply continuous force safely
+        targetRigidbody.AddForce(pushDirection * 2, ForceMode2D.Force);
+    }
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

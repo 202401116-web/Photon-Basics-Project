@@ -3606,6 +3606,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8963733381609141094, guid: fb90d8f18ba5cca4aae96bbe6039f8a3, type: 3}
+      propertyPath: m_Mass
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963733381609141094, guid: fb90d8f18ba5cca4aae96bbe6039f8a3, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: a73bcce638ec6724ab1314f1896c8a45, type: 2}
+    - target: {fileID: 8963733381609141094, guid: fb90d8f18ba5cca4aae96bbe6039f8a3, type: 3}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963733381609141094, guid: fb90d8f18ba5cca4aae96bbe6039f8a3, type: 3}
+      propertyPath: m_AngularDamping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
