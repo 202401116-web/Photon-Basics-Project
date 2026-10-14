@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player2DController
   moveSpeed: 5
-  jumpForce: 11
+  jumpForce: 10
   sprite: {fileID: 0}
   isGrounded: 0
   animator: {fileID: 0}
