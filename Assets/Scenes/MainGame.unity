@@ -3608,7 +3608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8963733381609141094, guid: fb90d8f18ba5cca4aae96bbe6039f8a3, type: 3}
       propertyPath: m_Mass
-      value: 15
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8963733381609141094, guid: fb90d8f18ba5cca4aae96bbe6039f8a3, type: 3}
       propertyPath: m_Material
@@ -3621,6 +3621,10 @@ PrefabInstance:
     - target: {fileID: 8963733381609141094, guid: fb90d8f18ba5cca4aae96bbe6039f8a3, type: 3}
       propertyPath: m_AngularDamping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963733381609141094, guid: fb90d8f18ba5cca4aae96bbe6039f8a3, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
