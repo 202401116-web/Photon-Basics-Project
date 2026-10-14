@@ -38,6 +38,7 @@ public class ExitLevel : MonoBehaviourPun
         }
         else if(playersInDoor >= 2 && sceneToLoad == "exitGame")
         {
+            Debug.Log("YIPEE, WE escaped");
             Application.Quit();
         }
     }
