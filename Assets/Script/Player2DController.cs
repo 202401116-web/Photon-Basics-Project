@@ -102,33 +102,12 @@ public class Player2DController : MonoBehaviourPun, IPunObservable
         {
             if (Input.GetKeyDown(KeyCode.E)) //this is the key for grab or release
             {
-                if (grabbedObject == null)
-                {
-                    if (hit != null && hit.TryGetComponent<InteractableObject>(out var interacterer))
-                    {
-                        grabbedObject = interacterer;
-                        grabbedObject.photonView.RPC("RPC_SetGrabbed", RpcTarget.AllBuffered, photonView.ViewID);
-                    }
-                }
-                else
-                {
-                    grabbedObject.photonView.RPC("RPC_Release", RpcTarget.AllBuffered);
-                    grabbedObject = null;
-                }
                 if (hit.TryGetComponent<Lever>(out var lever))
                 {
                     Debug.Log("Switcheroo");
                     lever.photonView.RPC("Switched", RpcTarget.AllBuffered, false);
                 }
             }
-        }
-
-        if (grabbedObject != null)
-        {
-            grabbedObject.transform.position = Vector3.Lerp(
-                grabbedObject.transform.position,
-                interactPoint.position,
-                Time.deltaTime * 10f);
         }
     }
 
